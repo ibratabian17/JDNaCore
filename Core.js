@@ -11,22 +11,21 @@
 console.log("Running Patcher..")
 
 //PB Start
-console.log("Running PB..")
 setInterval(function(){
-var checkExistClass = $(".js").hasClass("state-dance");
-if(checkExistClass ){
-var top_bar = $('.fill')
-var beat = $('#beat')
-var bg = top_bar.css('background-color')
-var bga = beat.css('background-color')
-var color = top_bar.css('color')
-beat.siblings().css({
-  backgroundColor: bg,
-  color: color
-})
-if(bga != color){
-document.getElementById("beat").style.backgroundColor = color;
-}
-    }
-}, 500);
-//run this patch every .5 miliseconds
+  var checkExistClass = $(".js").hasClass("state-dance");
+  if(checkExistClass ){
+  var top_bar = $('.fill')
+  var beat = $('#beat')
+  var bg = top_bar.css('background-color')
+  var bga = beat.css('background-color')
+  var color = top_bar.css('color')
+  beat.siblings().css({
+    backgroundColor: bg,
+    color: color
+  })
+  if(bga != color){
+  console.log("Running PictoBar Patcher.." + color)
+  document.getElementById("beat").style.backgroundColor = color;
+  }
+      }
+  }, 500);//run this thang every .5 seconds
