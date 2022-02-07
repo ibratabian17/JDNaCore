@@ -15,5 +15,19 @@ The Tools are released under the GPL v3.0 license.
 
 5. You can now open [Just Dance Now](https://justdancenow.com).
 
+### Compability
+| Stylse Name   | PictoBeat-Color | Auto In-Game  |
+| ------------- | ------------- | ------------- |
+| Just Dance Now Redrawn        | ❌ | ✔ |
+| Just Dance Now 2021 Overhaul  | ❌ | ✔ |
+| Just Dance Now Ultimate       | ❌ | ✔ |
+| Just Dance Now Polished       | ❌ | ✔ |
+| Just Dance Now Lite           | ❌ | ✔ |
+| Just Dance 2022 Yunyl         | ❌ | ✔ |
+| Just Dance Now Refurbished    | ❌ | ✔ |
+| Just Dance Now Polished       | ❌ | ✔ |
+| Just Dance Now Revamped       | ❌ | ✔ |
+| Just Dance Now Modern         | ✔ | ✔ |
+
 ### Promote Image
 ![Color Pictobar](https://i.imgur.com/061MOme.jpg)
