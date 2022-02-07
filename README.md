@@ -10,14 +10,14 @@ The Tools are released under the GPL v3.0 license.
 
 2. If You Doesn't have/Not use a style, You can go To [Userstyle](https://userstyles.world/) to Download the Stylish
 
-3. Then, install core using this link: **[Installation link](https://raw.githubusercontent.com/ibratabian17/JDNaCore/main/Core.js)**
+3. Then, install core using this link: **[Installation link](https://github.com/ibratabian17/JDNaCore/raw/main/Core.js)**
 
 4. ViolentMonkey will open the script. Click "Confirm installation" in the top right, to finish the installation.
 
 5. You can now open [Just Dance Now](https://justdancenow.com).
 
 ### Compability
-| Stylse Name   | PictoBeat-Color | Auto In-Game  |
+| Stylse Name   | PictoBeat-Color | Unhud-Beat |
 | ------------- | ------------- | ------------- |
 | Just Dance Now Redrawn        | ❌ | ✔ |
 | Just Dance Now 2021 Overhaul  | ❌ | ✔ |
