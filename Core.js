@@ -10,6 +10,7 @@
 // ==/UserScript==
 console.log("Running Patcher..")
 
+function PictoBar(){
 //PB Start
 setInterval(function(){
   var checkExistClass = $(".js").hasClass("state-dance");
@@ -29,8 +30,9 @@ setInterval(function(){
   }
       }
   }, 500);//run this thang every .5 seconds
+}
 
-
+function UnHudBeat(){
   //UnHud-Beat
   setInterval(function(){
     var checkTutorialClass = $(".js").hasClass("state-tutorial");
@@ -57,3 +59,9 @@ setInterval(function(){
     nade.type = "text/css"
     nade.innerText = styles
     document.documentElement.appendChild(nade);
+  }
+
+  console.log("Running PictoBar Patcher..")
+  PictoBar()
+  console.log("Running UnHudBeat Patcher..")
+  UnHudBeat()
