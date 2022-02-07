@@ -16,6 +16,11 @@ The Tools are released under the GPL v3.0 license.
 
 5. You can now open [Just Dance Now](https://justdancenow.com).
 
+### Notes
+1. For Style Creator, To Make PictoBeat Work Perfectly, Follow This Instruction, **[Instruction](https://github.com/ibratabian17/JDNaCore/blob/example/pictobeat.md)**
+
+2. For Style Creator, To Disable UnHud-Beat, You Can Add This Code To Disable It, **[Example Code](https://github.com/ibratabian17/JDNaCore/blob/example/disableunhud.md)**
+
 ### Compability
 | Stylse Name   | PictoBeat-Color | Unhud-Beat |
 | ------------- | ------------- | ------------- |
@@ -29,6 +34,12 @@ The Tools are released under the GPL v3.0 license.
 | Just Dance Now Polished       | ❌ | ✔ |
 | Just Dance Now Revamped       | ❌ | ✔ |
 | Just Dance Now Modern         | ✔ | ✔ |
+| Just Dance Now 2017           | ❌ | ✔ |
+| Just Dance Nowastic           | ❌ | - |
+| Just Dance Now Fluet V2       | ❌ | ✔ |
+| Just Dance Now 2022           | ❌ | ✔ |
+| Just Dance Now Re-imaginated  | ❌ | ✔ |
+
 
 ### Promote Image
 ![Color Pictobar](https://i.imgur.com/061MOme.jpg)
