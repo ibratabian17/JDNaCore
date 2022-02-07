@@ -1,4 +1,5 @@
 # JDNaCore
+Anu Customization Core for Costum Just Dance Now
 
 tested with [ViolentMonkey](https://violentmonkey.github.io/).
 The Tools are released under the GPL v3.0 license.
