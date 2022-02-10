@@ -22,23 +22,24 @@ The Tools are released under the GPL v3.0 license.
 2. For Style Creator, To Disable UnHud-Beat, You Can Add This Code To Disable It, **[Example Code](https://github.com/ibratabian17/JDNaCore/blob/example/disableunhud.md)**
 
 ### Compability
-| Stylse Name   | PictoBeat-Color | Unhud-Beat |
-| ------------- | ------------- | ------------- |
-| Just Dance Now Redrawn        | ❌ | ✔ |
-| Just Dance Now 2021 Overhaul  | ❌ | ✔ |
-| Just Dance Now Ultimate       | ❌ | ✔ |
-| Just Dance Now Polished       | ❌ | ✔ |
-| Just Dance Now Lite           | ❌ | ✔ |
-| Just Dance 2022 Yunyl         | ❌ | ✔ |
-| Just Dance Now Refurbished    | ❌ | ✔ |
-| Just Dance Now Polished       | ❌ | ✔ |
-| Just Dance Now Revamped       | ❌ | ✔ |
-| Just Dance Now Modern         | ✔ | ✔ |
-| Just Dance Now 2017           | ❌ | ✔ |
-| Just Dance Nowastic           | ❌ | - |
-| Just Dance Now Fluet V2       | ❌ | ✔ |
-| Just Dance Now 2022           | ❌ | ✔ |
-| Just Dance Now Re-imaginated  | ❌ | ✔ |
+| Stylse Name   | PictoBeat-Color | Unhud-Beat | Score Counter |
+| ------------- | ------------- | ------------- | ------------- |
+| Just Dance Now Redrawn        | ❌ | ✔ | ❌ |
+| Just Dance Now 2021 Overhaul  | ❌ | ✔ | ❌ |
+| Just Dance Now Ultimate       | ❌ | ✔ | ❌ |
+| Just Dance Now Polished       | ❌ | ✔ | ❌ |
+| Just Dance Now Lite           | ❌ | ✔ | ❌ |
+| Just Dance 2022 Yunyl         | ❌ | ✔ | ❌ |
+| Just Dance Now Refurbished    | ❌ | ✔ | ❌ |
+| Just Dance Now Polished       | ❌ | ✔ | ❌ |
+| Just Dance Now Revamped       | ❌ | ✔ | ❌ |
+| Just Dance Now Modern         | ✔ | ✔ | ❌ |
+| Just Dance Now 2017           | ❌ | ✔ | ❌ |
+| Just Dance Nowastic           | ❌ | ❌ | ❌ |
+| Just Dance Now Fluet V2       | ❌ | ✔ | ❌ |
+| Just Dance Now 2022           | ❌ | ✔ | ❌ | 
+| Just Dance Now Re-imaginated  | ❌ | ✔ | ❌ |
+| Just Dance Now Anu            | ✔ | ✔ | ✔ |
 
 
 ### Promote Image
