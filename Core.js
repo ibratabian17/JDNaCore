@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JDNaCore All In One
 // @namespace    JDNaCore
-// @version      0.1.13
+// @version      0.1.14
 // @description  All JDNaCore Script In One
 // @author       ibratabian17
 // @match        https://justdancenow.com/
