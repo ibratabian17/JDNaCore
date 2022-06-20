@@ -118,11 +118,50 @@ if(IsDance){
     }, 500);//run this thang every .5 seconds
 }
 
+function HudPlus(){
+  //PB Start
+  var odon = false;
+  var prefbeatdur;
+  var beatdur;
+  
+  setInterval(function(){
+    var IsTutorial = $(".js").hasClass("state-tutorial");
+    if(IsTutorial ){
+      odon = false;
+        const hud = document.querySelector('.hud');
+        hud.classList.add("odd");
+        hud.classList.remove("even");
+    }
+    var checkExistClass = $(".js").hasClass("state-dance");
+    if(checkExistClass ){
+      
+    fixedbeat = $('#beat')
+    beatdur = fixedbeat.css('animation-duration')
+    const root = document.querySelector(":root"); //grabbing the root element
+    if (beatdur !== prefbeatdur){
+      if(odon ){
+        odon = false;
+        const hud = document.querySelector('.hud');
+        hud.classList.add("odd");
+        hud.classList.remove("even");
+      } else {
+        odon = true;
+        const hud = document.querySelector('.hud');
+        hud.classList.add("even");
+        hud.classList.remove("odd");
+      }
+    }
+    prefbeatdur = fixedbeat.css('animation-duration');
+          }
+    }, 1);//run this thang every 1 miliseconds
+  }
+
 console.log("Running Patch")
 try {
 HideUI()
 PictoBeatColor()
 GetRTColor()
+HudPlus()
 }
 catch(err) {
   //ignore error
