@@ -9,9 +9,11 @@
 // @grant        none
 // ==/UserScript==
 
-setInterval(function(){
+  setInterval(function(){
     if($(".js").hasClass("state-tutorial") || $(".js").hasClass("state-dance") || $(".js").hasClass("state-afterdance")){
+        try{
         var myPlayer = document.querySelector(".video-preview__video");
         myPlayer.pause();
+        } catch(err) {}
       }
     }, 500);

@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         JDNaCore Deprecated
+// @name         JDNaCore All In One
 // @namespace    JDNaCore
 // @version      0.1.19
 // @description  All JDNaCore Script In One
@@ -9,7 +9,6 @@
 // @grant        none
 // ==/UserScript==
 console.log("JDNaCore - Created By Ibratabian17")
-console.log("Warning! The version of JDNaCore you are using is deprecated! use the new one!")
 
 //HideUI
 function HideUI() {
