@@ -375,7 +375,7 @@ window.JDNaCore = JDNaCoreCliOptions;
       if(DebuggingMode)console.log('Starting '.concat(string))
         try {
             var JDNaCoreStyles = window.getComputedStyle(JDNaCore);
-            if (JDNaCoreStyles.getPropertyValue(string) == ' true') {
+            if (JDNaCoreStyles.getPropertyValue(string).includes('true')){
                 p()
             }
         } catch (err) {
