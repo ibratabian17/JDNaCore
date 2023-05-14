@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JDNaCore All In One
 // @namespace    JDNaCore
-// @version      0.1.20
+// @version      0.1.23
 // @description  All JDNaCore Script In One
 // @author       ibratabian17
 // @match        https://justdancenow.com/
@@ -13,17 +13,66 @@
 //JDNaCore Begining
 console.log("JDNaCore - Created By Ibratabian17")
 console.log("Use JDNaCore.help() For Get Help")
-var JDNaCoreVersion = "0.1.20";
+var JDNaCoreVersion = "0.1.23";
 var JDNaCoreType = "Stable";
 var JDNState = "jdnacore";
 var DebuggingMode = false;
 var Script = this;
 var InjectCSS = "";
+var jdnRegion = {};
+
+
+
+
+//Songdbs
+{
+    fetch('https://justdancenow.com/query')
+        .then((response) => response.json())
+        .then((data) => {
+            jdnRegion.jdns = data.jdns
+            jdnRegion.api = data.jdns.replace('jdns', 'api')
+            fetch(`${jdnRegion.api}v1/songs/published`)
+                .then((response) => response.json())
+                .then((data) => {
+                    let cssString = '';
+                    jdnRegion.songdb = data
+                    data.forEach(item => {
+                        const {
+                            id,
+                            bkg_image
+                        } = item;
+                        let cssClass = `
+                        .song-mapbkg.${id}E {
+    background-image: url("${bkg_image}");
+  }`;
+
+                        if (/^\d/.test(id)) {
+                            // If the id starts with a number, escape the number using \32
+                            cssClass = `${cssClass.replace(id, `\\32 ${id}`)}`;
+                        }
+
+
+                        cssString += cssClass;
+                    });
+                    var albumbkg = document.createElement("style")
+                    albumbkg.type = "text/css"
+                    albumbkg.innerText = cssString
+                    document.documentElement.appendChild(albumbkg);
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+            //EOL
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
 
 //HideUI
 function HideUI() {
     document.querySelector('.js').classList.add("anucore-hui");
-    setInterval(function () {
+    setInterval(function() {
         var checkTutorialClass = $(".js").hasClass("state-tutorial");
         if (checkTutorialClass) {
             const el = document.querySelector('.hud');
@@ -59,7 +108,7 @@ function HideUI() {
 function PictoBeatColor() {
     document.querySelector('.js').classList.add("anucore-pbc");
     //PB Start
-    setInterval(function () {
+    setInterval(function() {
         var checkExistClass = $(".js").hasClass("state-dance");
         if (checkExistClass) {
             var top_bar = $('.fill')
@@ -143,17 +192,26 @@ function PictoBeatColor() {
     }
 
     function ApplyRTColor() {
-        setInterval(function () {
+        setInterval(function() {
             var IsDance = $(".js").hasClass("state-dance");
             if (IsDance) {
-                try{ PatchColor('#racetrack-fill-p1') }catch(err){}
-                try{ PatchColor('#racetrack-fill-p2') }catch(err){}
-                try{ PatchColor('#racetrack-fill-p3') }catch(err){}
-                try{ PatchColor('#racetrack-fill-p4') }catch(err){}
+                try {
+                    PatchColor('#racetrack-fill-p1')
+                } catch (err) {}
+                try {
+                    PatchColor('#racetrack-fill-p2')
+                } catch (err) {}
+                try {
+                    PatchColor('#racetrack-fill-p3')
+                } catch (err) {}
+                try {
+                    PatchColor('#racetrack-fill-p4')
+                } catch (err) {}
             }
         }, 1); //run this thang every .001 seconds
-   }
+    }
 }
+
 function RCTrackPlus() {
     document.querySelector('.js').classList.add("anucore-rcplus");
     ApplyRTColor()
@@ -169,8 +227,8 @@ function HudPlus() {
     var oldpictoslength;
     var oldpictostexture;
     let oddiseven = 1;
-  let beatisfour = 1;
-  InjectCSS = InjectCSS.concat("", `
+    let beatisfour = 1;
+    InjectCSS = InjectCSS.concat("", `
     .picto .texture {
         display: block;
         width: 100%;
@@ -179,10 +237,11 @@ function HudPlus() {
     }
     .picto:has(.texture) {
         background-image: none!important;
-    }`)
+    }
+    `)
 
-    var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutationRecord) {
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutationRecord) {
             var IsTutorial = $(".js").hasClass("state-tutorial");
             if (IsTutorial) {
                 odon = false;
@@ -195,8 +254,8 @@ function HudPlus() {
             if (checkExistClass) {
                 //GetPictosState
                 const pictos = document.querySelectorAll('#pictos .picto');
-                if(!pictos[0].children.length > 0){
-                  setTimeout(CheckPictosState(), 2000);
+                if (!pictos[0].children.length > 0) {
+                    setTimeout(CheckPictosState(), 2000);
                 }
 
                 //OddOrEven
@@ -208,7 +267,7 @@ function HudPlus() {
                     odon = false;
                     hud.classList.add("odd");
                     hud.classList.remove("even");
-                    if(oddiseven == 2)beatisfour++;
+                    if (oddiseven == 2) beatisfour++;
                     oddiseven++;
                 } else {
                     odon = true;
@@ -217,10 +276,10 @@ function HudPlus() {
                     //oddiseven++;
                 }
 
-              if(beatisfour == 3)beatisfour = 1
-              if(oddiseven == 3)oddiseven = 1;
-              hud.setAttribute("oddiseven", oddiseven);
-              hud.setAttribute("beatisfour", beatisfour);
+                if (beatisfour == 3) beatisfour = 1
+                if (oddiseven == 3) oddiseven = 1;
+                hud.setAttribute("oddiseven", oddiseven);
+                hud.setAttribute("beatisfour", beatisfour);
 
                 //LyricHider
                 const line = document.getElementsByClassName('line');
@@ -235,18 +294,18 @@ function HudPlus() {
         mutations.forEach(function(mutationRecord) {
             if (mutationRecord.target.style.transition == "opacity 0.3s ease 0s, transform ease") {
                 mutationRecord.target.classList.add("hiding")
-              if(DebuggingMode == true)console.log('Assigning Pictos As Hiding')
+                if (DebuggingMode == true) console.log('Assigning Pictos As Hiding')
             } else {
                 mutationRecord.target.classList.remove("hiding")
             }
-          //create texture inside pictos
-          if(!mutationRecord.target.hasChildNodes()){
-            const texturetemp = document.createElement("div");
-            texturetemp.classList.add("texture");
-            mutationRecord.target.appendChild(texturetemp)
+            //create texture inside pictos
+            if (!mutationRecord.target.hasChildNodes()) {
+                const texturetemp = document.createElement("div");
+                texturetemp.classList.add("texture");
+                mutationRecord.target.appendChild(texturetemp)
             }
             const texture = mutationRecord.target.querySelector(".texture");
-                texture.style.backgroundImage = mutationRecord.target.style.backgroundImage;
+            texture.style.backgroundImage = mutationRecord.target.style.backgroundImage;
             texture.style.backgroundSize = mutationRecord.target.style.backgroundSize;
             texture.style.backgroundPosition = mutationRecord.target.style.backgroundPosition;
         });
@@ -260,11 +319,14 @@ function HudPlus() {
             return;
         }
         try {
-            observer.observe(target, { attributes: true, attributeFilter: ['style'] });
-        }
-        catch (err) { }
+            observer.observe(target, {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+        } catch (err) {}
     }
-      function CheckPictosState() {
+
+    function CheckPictosState() {
         var target = document.querySelectorAll('#pictos .picto');
         if (!target) {
             //The node we need does not exist yet.
@@ -273,21 +335,57 @@ function HudPlus() {
             return;
         }
         try {
-            PictosObserver.observe(target[0], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[1], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[2], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[3], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[4], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[5], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[7], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[8], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[9], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[10], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[11], { attributes: true, attributeFilter: ['style'] });
-            PictosObserver.observe(target[12], { attributes: true, attributeFilter: ['style'] });
-          pictostate = true
+            PictosObserver.observe(target[0], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[1], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[2], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[3], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[4], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[5], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[7], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[8], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[9], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[10], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[11], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            PictosObserver.observe(target[12], {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+            pictostate = true
         } catch (err) {
-            if(DebuggingMode)console.log('PictosObserver: Ignoring '.concat(err))
+            if (DebuggingMode) console.log('PictosObserver: Ignoring '.concat(err))
         }
     }
 
@@ -295,87 +393,174 @@ function HudPlus() {
 }
 //FeedbackPlus
 {
-  function FeedbackPlus() {
+    function FeedbackPlus() {
 
+    }
 }
+//PreviewPlus
+{
+    function PreviewPlus() {
+        var odon = false;
+        var beatisfour = false
+        const preview = document.querySelector('#preview');
+        const root = document.querySelector(":root");
+        var currentSong;
+        var nextSong; //grabbing the root element
+        InjectCSS = InjectCSS.concat("", `
+        .song-jdversion {
+        font-size: 0.14em;
+    }
+    `)
+        var PrevObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutationRecord) {
+
+                //oddiseven
+                const preview = document.querySelector('#preview')
+                currentSong = preview.querySelector('.song-cover--hi-res').classList[2]
+                if (currentSong != nextSong) {
+                    odon = false
+
+                    const selectedObject = jdnRegion.songdb.find(obj => obj.id === currentSong);
+                    preview.querySelector('.song-jdversion .version').innerText = `${selectedObject.jdversion}`;
+                    preview.querySelector('.song-mapbkg').classList.remove(`${nextSong}E`)
+                    preview.querySelector('.song-mapbkg').classList.add(`${currentSong}E`)
+                    preview.querySelector('.song-albumcoach').classList.remove(`${nextSong}AC`)
+                    preview.querySelector('.song-albumcoach').classList.add(`${currentSong}AC`)
+                }
+                if (preview.classList.contains('even')) {
+                    if (odon) {
+                        odon = false;
+                        preview.setAttribute("oddiseven", "false");
+
+                    } else {
+                        odon = true;
+                        preview.setAttribute("oddiseven", "true");
+                        //oddiseven++;
+                        if (beatisfour) {
+                            beatisfour = false
+                            preview.setAttribute("beatisfour", "false");
+                        } else {
+                            beatisfour = true
+                            preview.setAttribute("beatisfour", "true");
+                        }
+                    }
+                }
+                nextSong = currentSong;
+            });
+        }); //run this thang every animationDuration Change
+        function PatchPreview() {
+            var target = document.getElementById('preview');
+            if (!target) {
+                //The node we need does not exist yet.
+                //Wait 500ms and try again
+                window.setTimeout(PatchPreview, 500);
+                return;
+            }
+            try {
+                //Add Some Needed Element For JDN
+                target.querySelector('.song-preview').insertAdjacentHTML('beforeend', `
+          <div class="song-mapbkg"></div>
+          <div class="song-albumcoach"></div>
+          <div class="song-jdversion">
+            <span class="just-dance">Just Dance </span>
+            <span class="version">403</span>
+          </div>
+          `)
+                PrevObserver.observe(target, {
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+            } catch (err) {}
+        }
+        PatchPreview()
+    }
 }
 
 //StopMyPreview!
 function StopMyPreview() {
-    setInterval(function () {
+    setInterval(function() {
         if ($(".js").hasClass("state-tutorial") || $(".js").hasClass("state-dance") || $(".js").hasClass("state-afterdance")) {
             try {
                 var myPlayer = document.querySelector(".video-preview__video");
                 myPlayer.pause();
-            } catch (err) { }
+            } catch (err) {}
         }
     }, 500);
 }
 
 //JSInector
 function AllowToInjectJS() {
-  /* These Things Only Work If You Not using it on greasemonkey*/
-  console.log("Be carefull! This gonna execute the code therefore be careful of where/how you got this string. Mind that anyone may try to insert malicious code inside your string.")
-          try{
-            var JDNaCore = document.querySelector("#JDNaCore")
-            var JDNaCoreStyles = window.getComputedStyle(JDNaCore);
-            if (JDNaCoreStyles.getPropertyValue("--JSInput")) {
-                eval(JDNaCoreStyles.getPropertyValue("--JSInput"));
-            } else {
-              alert("To use it is required, you need a js script, if you are a style maker, please read our docs")
-            }
-        } catch (err) {
-            console.log("Error: " + err)
-            alert(JSInjector + ' Failed To Start! Check Console!')
+    /* These Things Only Work If You Not using it on greasemonkey*/
+    console.log("Be carefull! This gonna execute the code therefore be careful of where/how you got this string. Mind that anyone may try to insert malicious code inside your string.")
+    try {
+        var JDNaCore = document.querySelector("#JDNaCore")
+        var JDNaCoreStyles = window.getComputedStyle(JDNaCore);
+        if (JDNaCoreStyles.getPropertyValue("--JSInput")) {
+            eval(JDNaCoreStyles.getPropertyValue("--JSInput"));
+        } else {
+            alert("To use it is required, you need a js script, if you are a style maker, please read our docs")
         }
+    } catch (err) {
+        console.log("Error: " + err)
+        alert(JSInjector + ' Failed To Start! Check Console!')
+    }
 }
 
 
 //Script Helper
 {
 
-var CheckJDNState = new MutationObserver(function(mutations) {
+    var CheckJDNState = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutationRecord) {
-                if($(mutationRecord.target).hasClass("state-tutorial"))JDNState="tutorial"
-                if($(mutationRecord.target).hasClass("state-songselection"))JDNState="songselection"
-                if($(mutationRecord.target).hasClass("state-coachselection"))JDNState="coachselection"
-                if($(mutationRecord.target).hasClass("state-dance"))JDNState="dance"
-                if($(mutationRecord.target).hasClass("state-afterdance"))JDNState="afterdance"
-          if(DebuggingMode)console.log("JDNaCore: Core: Set State To ".concat(JDNState))
+            if ($(mutationRecord.target).hasClass("state-tutorial")) JDNState = "tutorial"
+            if ($(mutationRecord.target).hasClass("state-songselection")) JDNState = "songselection"
+            if ($(mutationRecord.target).hasClass("state-coachselection")) JDNState = "coachselection"
+            if ($(mutationRecord.target).hasClass("state-dance")) JDNState = "dance"
+            if ($(mutationRecord.target).hasClass("state-afterdance")) JDNState = "afterdance"
+            if (DebuggingMode) console.log("JDNaCore: Core: Set State To ".concat(JDNState))
         });
     }); //run this thang every animationDuration Change
-CheckJDNState.observe(document.querySelector("html"), { attributes: true, attributeFilter: ['class'] });
-const JDNaCoreCliOptions = {
-  getVariable(params) {
-    var JDNaCoreVersion = Script.JDNaCoreVersion;
-    var DebuggingMode = Script.DebuggingMode;
-    var JDNState = Script.JDNState;
-    const JDNaCoreStringOptions = {
-  isRunning: true, Version: JDNaCoreVersion, isDebugging: DebuggingMode, JDNState: JDNState
-}
-    return JDNaCoreStringOptions;
-  },
-  DebuggingMode(params) {
-    DebuggingMode = params
-  },
-  help(params) {
-    console.log('Welcome to JDNaCore cli, All command list will appear when typing JDNaCore,\
-    To run the add \'()\' function at the end of the letter')
-  },
-  stopModules(params) {
-    console.log(Script)
-  }
+    CheckJDNState.observe(document.querySelector("html"), {
+        attributes: true,
+        attributeFilter: ['class']
+    });
 
-  }
-window.JDNaCore = JDNaCoreCliOptions;
+    const JDNaCoreCliOptions = {
+        getVariable(params) {
+            var JDNaCoreVersion = Script.JDNaCoreVersion;
+            var DebuggingMode = Script.DebuggingMode;
+            var JDNState = Script.JDNState;
+            var dev = Script;
+            const JDNaCoreStringOptions = {
+                isRunning: true,
+                Version: JDNaCoreVersion,
+                isDebugging: DebuggingMode,
+                JDNState: JDNState,
+                dev: dev
+            }
+            return JDNaCoreStringOptions;
+        },
+        DebuggingMode(params) {
+            DebuggingMode = params
+        },
+        help(params) {
+            console.log('Welcome to JDNaCore cli, All command list will appear when typing JDNaCore,\
+    To run the add \'()\' function at the end of the letter')
+        },
+        stopModules(params) {
+            console.log(Script)
+        }
+
+    }
+    window.JDNaCore = JDNaCoreCliOptions;
 }
 //Run Patcher v2
 {
     function StartPatcher(string, p) {
-      if(DebuggingMode)console.log('Starting '.concat(string))
+        if (DebuggingMode) console.log('Starting '.concat(string))
         try {
             var JDNaCoreStyles = window.getComputedStyle(JDNaCore);
-            if (JDNaCoreStyles.getPropertyValue(string).includes('true')){
+            if (JDNaCoreStyles.getPropertyValue(string).includes('true')) {
                 p()
             }
         } catch (err) {
@@ -398,10 +583,11 @@ window.JDNaCore = JDNaCoreCliOptions;
     --AllowToInjectJS: false;
     --StopMyPreview: true;
     --CheckerVersion: true;
+    --PreviewPlus: true;
     --FixLyrics: true;}
    `;
     JDNaCore.appendChild(JDNaCoreString);
-    setTimeout(function () {
+    setTimeout(function() {
         try {
             console.log(JDNaCoreVersion)
             StartPatcher('--HideUi', HideUI);
@@ -410,12 +596,13 @@ window.JDNaCore = JDNaCoreCliOptions;
             StartPatcher('--RacetrackPlus', RCTrackPlus);
             StartPatcher('--StopMyPreview', StopMyPreview);
             StartPatcher('--AllowToInjectJS', AllowToInjectJS);
-            StartPatcher('--AllowToInjectJS', FeedbackPlus);
+            StartPatcher('--PreviewPlus', PreviewPlus);
             console.log('Welcome to the JDNaCore era!')
             var nade = document.createElement("style")
             nade.type = "text/css"
             nade.innerText = InjectCSS
             document.documentElement.appendChild(nade);
+
         } catch (err) {
             console.log("Initial Error: " + err)
             alert('JDNaCore' + ' Failed To Start!')
