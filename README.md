@@ -6,13 +6,13 @@ The Tools are released under the GPL v3.0 license.
 
 ### Installation
 
-1. make sure you have the [ViolentMonkey](https://violentmonkey.github.io/) & [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne) add-on installed in your browser.
+1. Make sure you have [ViolentMonkey](https://violentmonkey.github.io/) & [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne) add-ons installed in your browser.
 
-2. If You Doesn't have/Not use a style, You can go To [Userstyle](https://userstyles.world/) to Download the Stylish
+2. If you don't have / don't use styles, you can go to [Userstyle](https://userstyles.world/) to Download Styles
 
-3. Then, install core using this link: **[Installation link](https://greasyfork.org/scripts/446776-jdnacore-all-in-one/code/JDNaCore%20All%20In%20One.user.js)**
+3. Then, install the core using this link: **[Installation link](https://greasyfork.org/scripts/446776-jdnacore-all-in-one/code/JDNaCore%20All%20In%20One.user.js)**
 
-4. ViolentMonkey will open the script. Click "Confirm installation" in the top right, to finish the installation.
+4. ViolentMonkey will open the script. Click "Confirm installation" on the top right, to complete the installation.
 
 5. You can now open [Just Dance Now](https://justdancenow.com).
 
